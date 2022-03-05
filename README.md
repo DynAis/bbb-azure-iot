@@ -1,6 +1,6 @@
 # bbb-azure-iot
 
-Ostafalia SS2022 Teamproject
+Ostfalia SS2022 Teamproject
 
 A IoT device cloudconector for MS Azure based on BeagleBone Black
 
