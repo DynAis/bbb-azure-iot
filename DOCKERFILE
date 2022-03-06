@@ -3,6 +3,7 @@ MAINTAINER ShilaiZhang<sh.zhang@ostfalia.de>
 
 WORKDIR /usr/local
 RUN git clone https://github.com/DynAis/bbb-azure-iot.git
+WORKDIR /usr/local/bbb-azure-iot
 RUN pip install -r requirements.txt
 
 # CMD ["python", "opcua_test_demo.py"]

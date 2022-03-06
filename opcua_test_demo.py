@@ -75,13 +75,13 @@ if __name__ == "__main__":
         print('read current value after increcement: '+ str(var.Value.Value))
         print('--------------------------------------\n')
 
-        # subscribing to a variable node for 10s
-        print('----subscribe dynamic node value showcase (10s)----')
+        # subscribing to a variable node for 5s
+        print('----subscribe dynamic node value showcase (5s)----')
         dynamic_node = client.get_node("ns=2;i=11014")
         handler = SubHandler()
         sub = client.create_subscription(1000, handler)
         handle = sub.subscribe_data_change(dynamic_node)
-        time.sleep(10)
+        time.sleep(5)
         sub.unsubscribe(handle)
         print('--------------------------------------\n')
 
