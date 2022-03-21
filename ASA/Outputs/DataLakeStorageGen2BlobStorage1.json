@@ -1,0 +1,24 @@
+{
+    "Name": "Output",
+    "DataSourceType": "Blob Storage",
+    "BlobStorageProperties": {
+        "StorageAccounts": [
+            {
+                "AccountName": "cldmstblstrg1",
+                "AccountKey": null
+            }
+        ],
+        "Container": "bbb-azure-iot",
+        "PathPattern": "",
+        "DateFormat": "yyyy/MM/dd",
+        "TimeFormat": "HH",
+        "AuthenticationMode": "ConnectionString"
+    },
+    "DataSourceCredentialDomain": "b8b5ca51-eb5a-4edc-bb8a-60d5afd3fee6.StreamAnalystics",
+    "Serialization": {
+        "Type": "Json",
+        "Encoding": "UTF8",
+        "Format": "LineSeparated"
+    },
+    "ScriptType": "Output"
+}

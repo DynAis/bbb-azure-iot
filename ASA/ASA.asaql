@@ -1,0 +1,4 @@
+SELECT *
+INTO Output
+FROM Input
+WHERE Temperature > 27

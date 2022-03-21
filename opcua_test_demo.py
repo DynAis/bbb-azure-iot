@@ -20,7 +20,8 @@ from opcua import Client
 from opcua import ua
 
 # define server IP address
-server_url = "opc.tcp://opcua.demo-this.com:51210/UA/SampleServer"
+# server_url = "opc.tcp://opcua.demo-this.com:51210/UA/SampleServer"
+server_url = "opc.tcp://localhost:12345"
 
 class SubHandler(object):
     """
@@ -44,7 +45,7 @@ if __name__ == "__main__":
     client = Client(server_url)
 
     try:
-        print('start to connect opcua server: opc.tcp://opcua.demo-this.com:51210/UA/SampleServer')
+        print('start to connect opcua server: ' + server_url)
         client.connect()
         print('connect established\n')
         # client.load_type_definitions()  # load definition of server specific structures/extension objects
@@ -58,34 +59,62 @@ if __name__ == "__main__":
         print('-------------------------------\n')
 
         # get a specific node and print its value
-        static_node = client.get_node("ns=2;i=10218")
+        static_node = client.get_node("ns=3;s=\"Sort\".\"hmi\".\"bsAuto\"")
         var = static_node.get_data_value()  # get a static node as a DataValue object
         print('----get static node value showcase----')
+        print('Browse Name: ' + str(static_node.get_browse_name()))
         print('Timestamp: ' + str(var.SourceTimestamp))
         print('Value: ' + str(var.Value.Value))
         print('Type: ' + str(var.Value.VariantType))
         print('--------------------------------------\n')
 
-        # set a value of a static node
-        print('----set static node value showcase----')
-        print('read current value: ' + str(var.Value.Value))
-        print('increce value by 1')
-        # static_node.set_value(249,node.get_data_type_as_variant_type()) # same effect as below, but automaticly detect the datatype
-        static_node.set_value(ua.Variant(var.Value.Value + 1, ua.VariantType.Byte))
-        # static_node = client.get_node("ns=2;i=10218")
-        var = static_node.get_data_value()
-        print('read current value after increcement: '+ str(var.Value.Value))
+        static_node = client.get_node("ns=3;s=\"Sort\".\"hmi\".\"bsHand\"")
+        var = static_node.get_data_value()  # get a static node as a DataValue object
+        print('----get static node value showcase----')
+        print('Browse Name: ' + str(static_node.get_browse_name()))
+        print('Timestamp: ' + str(var.SourceTimestamp))
+        print('Value: ' + str(var.Value.Value))
+        print('Type: ' + str(var.Value.VariantType))
         print('--------------------------------------\n')
 
-        # subscribing to a variable node for 5s
-        print('----subscribe dynamic node value showcase (5s)----')
-        dynamic_node = client.get_node("ns=2;i=11014")
-        handler = SubHandler()
-        sub = client.create_subscription(1000, handler)
-        handle = sub.subscribe_data_change(dynamic_node)
-        time.sleep(5)
-        sub.unsubscribe(handle)
+        static_node = client.get_node("ns=3;s=\"Sort\".\"hmi\".\"bsStart\"")
+        var = static_node.get_data_value()  # get a static node as a DataValue object
+        print('----get static node value showcase----')
+        print('Browse Name: ' + str(static_node.get_browse_name()))
+        print('Timestamp: ' + str(var.SourceTimestamp))
+        print('Value: ' + str(var.Value.Value))
+        print('Type: ' + str(var.Value.VariantType))
         print('--------------------------------------\n')
+
+        static_node = client.get_node("ns=3;s=\"Sort\".\"hmi\".\"bsStopp\"")
+        var = static_node.get_data_value()  # get a static node as a DataValue object
+        print('----get static node value showcase----')
+        print('Browse Name: ' + str(static_node.get_browse_name()))
+        print('Timestamp: ' + str(var.SourceTimestamp))
+        print('Value: ' + str(var.Value.Value))
+        print('Type: ' + str(var.Value.VariantType))
+        print('--------------------------------------\n')
+        
+        # # set a value of a static node
+        # print('----set static node value showcase----')
+        # print('read current value: ' + str(var.Value.Value))
+        # print('increce value by 1')
+        # # static_node.set_value(249,node.get_data_type_as_variant_type()) # same effect as below, but automaticly detect the datatype
+        # static_node.set_value(ua.Variant(var.Value.Value + 1, ua.VariantType.Byte))
+        # # static_node = client.get_node("ns=2;i=10218")
+        # var = static_node.get_data_value()
+        # print('read current value after increcement: '+ str(var.Value.Value))
+        # print('--------------------------------------\n')
+
+        # # subscribing to a variable node for 5s
+        # print('----subscribe dynamic node value showcase (5s)----')
+        # dynamic_node = client.get_node("ns=2;i=11014")
+        # handler = SubHandler()
+        # sub = client.create_subscription(1000, handler)
+        # handle = sub.subscribe_data_change(dynamic_node)
+        # time.sleep(5)
+        # sub.unsubscribe(handle)
+        # print('--------------------------------------\n')
 
         # subscribe to events from server
         # sub.subscribe_events()

@@ -1,0 +1,81 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "ASAApiVersion": {
+      "value": "2017-04-01-preview"
+    },
+    "StreamAnalyticsJobName": {
+      "value": "ASA"
+    },
+    "Location": {
+      "value": "Central US"
+    },
+    "OutputStartMode": {
+      "value": "JobStartTime"
+    },
+    "OutputStartTime": {
+      "value": "2019-01-01T00:00:00Z"
+    },
+    "DataLocale": {
+      "value": "en-US"
+    },
+    "OutputErrorPolicy": {
+      "value": "Stop"
+    },
+    "EventsLateArrivalMaxDelayInSeconds": {
+      "value": 5
+    },
+    "EventsOutOfOrderMaxDelayInSeconds": {
+      "value": 0
+    },
+    "EventsOutOfOrderPolicy": {
+      "value": "Adjust"
+    },
+    "StreamingUnits": {
+      "value": 3
+    },
+    "CompatibilityLevel": {
+      "value": "1.2"
+    },
+    "ContentStoragePolicy": {
+      "value": "SystemAccount"
+    },
+    "Input_Input_iotHubNamespace": {
+      "value": "CloudMES"
+    },
+    "Input_Input_consumerGroupName": {
+      "value": "$Default"
+    },
+    "Input_Input_endpoint": {
+      "value": "messages/events"
+    },
+    "Input_Input_sharedAccessPolicyName": {
+      "value": "iothubowner"
+    },
+    "Input_Input_sharedAccessPolicyKey": {
+      "value": null
+    },
+    "Output_Output_Storage1_accountName": {
+      "value": "cldmstblstrg1"
+    },
+    "Output_Output_Storage1_accountKey": {
+      "value": null
+    },
+    "Output_Output_container": {
+      "value": "bbb-azure-iot"
+    },
+    "Output_Output_pathPattern": {
+      "value": ""
+    },
+    "Output_Output_dateFormat": {
+      "value": "yyyy/MM/dd"
+    },
+    "Output_Output_timeFormat": {
+      "value": "HH"
+    },
+    "Output_Output_authenticationMode": {
+      "value": "ConnectionString"
+    }
+  }
+}
