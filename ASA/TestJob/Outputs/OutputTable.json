@@ -1,0 +1,15 @@
+{
+    "Name": "OutputTable",
+    "DataSourceType": "Table Storage",
+    "TableStorageProperties": {
+        "AccountName": "cldmstblstrg1",
+        "AccountKey": null,
+        "Table": "OutputTable1",
+        "PartitionKey": "temperature",
+        "RowKey": "RowKey",
+        "BatchSize": 100,
+        "ColumnsToRemove": null
+    },
+    "DataSourceCredentialDomain": "9f4207dd-4765-447d-8f11-ce4fff324515.StreamAnalystics",
+    "ScriptType": "Output"
+}

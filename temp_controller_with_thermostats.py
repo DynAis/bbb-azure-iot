@@ -44,7 +44,7 @@ serial_number = "alohomora"
 THERMOSTAT_1 = None
 THERMOSTAT_2 = None
 
-
+# def 一个Thermostat class 恒温器 实现random(10:50)的T控制在一定范围内
 class Thermostat(object):
     def __init__(self, name, moving_win=10):
 
@@ -229,7 +229,7 @@ async def execute_property_listener(device_client):
 #####################################################
 # An # END KEYBOARD INPUT LISTENER to quit application
 
-
+# 可直接照搬
 def stdin_listener():
     """
     Listener for quitting the sample
@@ -246,7 +246,7 @@ def stdin_listener():
 
 
 #####################################################
-# MAIN STARTS
+# MAIN STARTS 用不到
 async def provision_device(provisioning_host, id_scope, registration_id, symmetric_key, model_id):
     provisioning_device_client = ProvisioningDeviceClient.create_from_symmetric_key(
         provisioning_host=provisioning_host,
@@ -290,7 +290,7 @@ async def main():
                 "Could not provision device. Aborting Plug and Play device connection."
             )
 
-    elif switch == "connectionString":
+    elif switch == "connectionString": # this will be used
         conn_str = os.getenv("IOTHUB_DEVICE_CONNECTION_STRING")
         print("Connecting using Connection String " + conn_str)
         device_client = IoTHubDeviceClient.create_from_connection_string(
@@ -333,6 +333,7 @@ async def main():
         device_client.patch_twin_reported_properties(properties_device_info),
     )
 
+# 所有监听
     ################################################
     # Get all the listeners running
     print("Listening for command requests and property updates")
@@ -363,6 +364,7 @@ async def main():
         execute_property_listener(device_client),
     )
 
+# the follow function is very important
     ################################################
     # Function to send telemetry every 8 seconds
 
@@ -423,3 +425,19 @@ if __name__ == "__main__":
     # loop = asyncio.get_event_loop()
     # loop.run_until_complete(main())
     # loop.close()
+
+
+# Notification  
+# generated json format {"temperature": T}   !fragen>只send了T?
+# received json from DB
+# {
+# "temperature":36,"EventProcessedUtcTime":"2022-03-21T21:37:06.5681677Z", ->temperature_msg2 = {"temperature": curr_temp_int}
+# "PartitionId":0,"EventEnqueuedUtcTime":"2022-03-21T21:37:06.4490000Z",
+# "IoTHub":{
+#   "MessageId":null,
+#   "CorrelationId":null,
+#   "ConnectionDeviceId":"BeagleBoneBlack",
+#   "ConnectionDeviceGenerationId":"637827289850239998",
+#   "EnqueuedTime":"2022-03-21T21:37:06.4490000Z"
+#   }
+# }
