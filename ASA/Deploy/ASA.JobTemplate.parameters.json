@@ -41,41 +41,38 @@
     "ContentStoragePolicy": {
       "value": "SystemAccount"
     },
-    "Input_Input_iotHubNamespace": {
+    "Input_CloudMES_iotHubNamespace": {
       "value": "CloudMES"
     },
-    "Input_Input_consumerGroupName": {
+    "Input_CloudMES_consumerGroupName": {
       "value": "$Default"
     },
-    "Input_Input_endpoint": {
+    "Input_CloudMES_endpoint": {
       "value": "messages/events"
     },
-    "Input_Input_sharedAccessPolicyName": {
+    "Input_CloudMES_sharedAccessPolicyName": {
       "value": "iothubowner"
     },
-    "Input_Input_sharedAccessPolicyKey": {
+    "Input_CloudMES_sharedAccessPolicyKey": {
       "value": null
     },
-    "Output_Output_Storage1_accountName": {
+    "Output_TableStorage1_accountName": {
       "value": "cldmstblstrg1"
     },
-    "Output_Output_Storage1_accountKey": {
+    "Output_TableStorage1_accountKey": {
       "value": null
     },
-    "Output_Output_container": {
-      "value": "bbb-azure-iot"
+    "Output_TableStorage1_table": {
+      "value": "OutputTable1"
     },
-    "Output_Output_pathPattern": {
-      "value": ""
+    "Output_TableStorage1_partitionKey": {
+      "value": "PartitionId"
     },
-    "Output_Output_dateFormat": {
-      "value": "yyyy/MM/dd"
+    "Output_TableStorage1_rowKey": {
+      "value": "EventProcessedUtcTime"
     },
-    "Output_Output_timeFormat": {
-      "value": "HH"
-    },
-    "Output_Output_authenticationMode": {
-      "value": "ConnectionString"
+    "Output_TableStorage1_batchSize": {
+      "value": 100
     }
   }
 }

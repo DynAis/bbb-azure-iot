@@ -2,8 +2,10 @@ import sys
 sys.path.insert(0, "..")
 import logging
 import time
+import json
 
-print("Hello")
+
+# print("Hello")
 
 # try:
 #     from IPython import embed
@@ -24,6 +26,7 @@ from opcua import ua
 server_url = "opc.tcp://localhost:12345"
 
 class SubHandler(object):
+    # TIA Portal has subscribemode?
     """
     Subscription Handler. To receive events from server for a subscription
     data_change and event methods are called directly from receiving thread.
@@ -36,6 +39,27 @@ class SubHandler(object):
     def event_notification(self, event):
         print("SErver: New event", event)
 
+def dict2json(key,value,time):
+#  Problem: which type of json will used? which is more efficient?
+#  str, dict, list ect. they all can convert into jsontype
+#  [python-json](https://www.w3schools.com/python/python_json.asp)
+    dic = {}
+    dic[key] = value
+    dic["Timestamp"] = str(time) #json doesnot support timestamp
+    return json.dumps(dic)#json string (however is type str not obj)
+
+def get_specificNode(node):
+    # get a specific node and print its value
+    static_node = client.get_node(node)
+    var = static_node.get_data_value()  # get a static node as a DataValue object
+    name = str(static_node.get_browse_name())[16:len(str(static_node.get_browse_name()))-1]
+    print('----get static node value showcase----')
+    print('Browse Name: ' + str(static_node.get_browse_name()))
+    print('Timestamp: ' + str(var.SourceTimestamp))
+    print('Value: ' + str(var.Value.Value))
+    print('Type: ' + str(var.Value.VariantType))
+    print('jsonstr: '+str(dict2json(name,var.Value.Value,var.SourceTimestamp)))
+    print('--------------------------------------\n')
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.WARN)
@@ -58,43 +82,25 @@ if __name__ == "__main__":
         print("Objects node is: ", objects)
         print('-------------------------------\n')
 
-        # get a specific node and print its value
-        static_node = client.get_node("ns=3;s=\"Sort\".\"hmi\".\"bsAuto\"")
-        var = static_node.get_data_value()  # get a static node as a DataValue object
-        print('----get static node value showcase----')
-        print('Browse Name: ' + str(static_node.get_browse_name()))
-        print('Timestamp: ' + str(var.SourceTimestamp))
-        print('Value: ' + str(var.Value.Value))
-        print('Type: ' + str(var.Value.VariantType))
-        print('--------------------------------------\n')
 
-        # why so many same repeated code?
-        static_node = client.get_node("ns=3;s=\"Sort\".\"hmi\".\"bsHand\"")
-        var = static_node.get_data_value()  # get a static node as a DataValue object
-        print('----get static node value showcase----')
-        print('Browse Name: ' + str(static_node.get_browse_name()))
-        print('Timestamp: ' + str(var.SourceTimestamp))
-        print('Value: ' + str(var.Value.Value))
-        print('Type: ' + str(var.Value.VariantType))
-        print('--------------------------------------\n')
+        node1 = "ns=3;s=\"Sort\".\"hmi\".\"bsAuto\""
+        get_specificNode(node1)
 
-        static_node = client.get_node("ns=3;s=\"Sort\".\"hmi\".\"bsStart\"")
-        var = static_node.get_data_value()  # get a static node as a DataValue object
-        print('----get static node value showcase----')
-        print('Browse Name: ' + str(static_node.get_browse_name()))
-        print('Timestamp: ' + str(var.SourceTimestamp))
-        print('Value: ' + str(var.Value.Value))
-        print('Type: ' + str(var.Value.VariantType))
-        print('--------------------------------------\n')
+        node2 = "ns=3;s=\"Sort\".\"hmi\".\"bsHand\""
+        get_specificNode(node2)
 
-        static_node = client.get_node("ns=3;s=\"Sort\".\"hmi\".\"bsStopp\"")
-        var = static_node.get_data_value()  # get a static node as a DataValue object
-        print('----get static node value showcase----')
-        print('Browse Name: ' + str(static_node.get_browse_name()))
-        print('Timestamp: ' + str(var.SourceTimestamp))
-        print('Value: ' + str(var.Value.Value))
-        print('Type: ' + str(var.Value.VariantType))
-        print('--------------------------------------\n')
+        node3 = "ns=3;s=\"Sort\".\"hmi\".\"bsStart\""
+        get_specificNode(node3)
+
+        node4 = "ns=3;s=\"Sort\".\"hmi\".\"bsStopp\""
+        get_specificNode(node4)
+
+
+# not solved problem:
+# the normal-node(vara. objects) in client is not iterable 
+# so cannot use **iterator** to search all the nodes such as in server-simulation, although they have the same type.
+# but a way must be found to search all the needed nodes instead of a specific node
+# objects has no attr. get_value, because they are different node
         
         # # set a value of a static node
         # print('----set static node value showcase----')
@@ -130,3 +136,4 @@ if __name__ == "__main__":
     finally:
         client.disconnect()
         print('server disconnected')
+

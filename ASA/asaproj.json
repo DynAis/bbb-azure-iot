@@ -7,12 +7,12 @@
             "subType": "JobConfig"
         },
         {
-            "filePath": "Inputs/CloudMES.json",
-            "subType": "Input"
+            "filePath": "Outputs/TableStorage1.json",
+            "subType": "Output"
         },
         {
-            "filePath": "Outputs/DataLakeStorageGen2BlobStorage1.json",
-            "subType": "Output"
+            "filePath": "Inputs/CloudMES.json",
+            "subType": "Input"
         }
     ]
 }

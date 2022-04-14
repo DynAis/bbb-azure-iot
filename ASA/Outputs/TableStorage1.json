@@ -1,0 +1,15 @@
+{
+  "Name": "TableStorage1",
+  "DataSourceType": "Table Storage",
+  "TableStorageProperties": {
+    "AccountName": "cldmstblstrg1",
+    "AccountKey": null,
+    "Table": "OutputTable1",
+    "PartitionKey": "PartitionId",
+    "RowKey": "EventProcessedUtcTime",
+    "BatchSize": 100,
+    "ColumnsToRemove": null
+  },
+  "DataSourceCredentialDomain": "571c392d-d25a-4a98-ad41-00541da6cd2e.StreamAnalystics",
+  "ScriptType": "Output"
+}

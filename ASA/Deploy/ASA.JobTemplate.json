@@ -109,41 +109,38 @@
         "JobStorageAccount"
       ]
     },
-    "Input_Input_iotHubNamespace": {
+    "Input_CloudMES_iotHubNamespace": {
       "type": "string"
     },
-    "Input_Input_consumerGroupName": {
+    "Input_CloudMES_consumerGroupName": {
       "type": "string"
     },
-    "Input_Input_endpoint": {
+    "Input_CloudMES_endpoint": {
       "type": "string"
     },
-    "Input_Input_sharedAccessPolicyName": {
+    "Input_CloudMES_sharedAccessPolicyName": {
       "type": "string"
     },
-    "Input_Input_sharedAccessPolicyKey": {
+    "Input_CloudMES_sharedAccessPolicyKey": {
       "type": "string"
     },
-    "Output_Output_Storage1_accountName": {
+    "Output_TableStorage1_accountName": {
       "type": "string"
     },
-    "Output_Output_Storage1_accountKey": {
+    "Output_TableStorage1_accountKey": {
       "type": "string"
     },
-    "Output_Output_container": {
+    "Output_TableStorage1_table": {
       "type": "string"
     },
-    "Output_Output_pathPattern": {
+    "Output_TableStorage1_partitionKey": {
       "type": "string"
     },
-    "Output_Output_dateFormat": {
+    "Output_TableStorage1_rowKey": {
       "type": "string"
     },
-    "Output_Output_timeFormat": {
-      "type": "string"
-    },
-    "Output_Output_authenticationMode": {
-      "type": "string"
+    "Output_TableStorage1_batchSize": {
+      "type": "int"
     }
   },
   "resources": [
@@ -170,22 +167,22 @@
           "name": "Transformation",
           "properties": {
             "streamingUnits": "[parameters('StreamingUnits')]",
-            "query": "SELECT *\r\nINTO Output\r\nFROM Input\r\nWHERE Temperature > 27"
+            "query": "SELECT *\r\nINTO Output\r\nFROM Input"
           }
         },
         "inputs": [
           {
-            "name": "Input",
+            "name": "CloudMES",
             "properties": {
               "type": "Stream",
               "datasource": {
                 "type": "Microsoft.Devices/IotHubs",
                 "properties": {
-                  "iotHubNamespace": "[parameters('Input_Input_iotHubNamespace')]",
-                  "consumerGroupName": "[parameters('Input_Input_consumerGroupName')]",
-                  "endpoint": "[parameters('Input_Input_endpoint')]",
-                  "sharedAccessPolicyName": "[parameters('Input_Input_sharedAccessPolicyName')]",
-                  "sharedAccessPolicyKey": "[parameters('Input_Input_sharedAccessPolicyKey')]"
+                  "iotHubNamespace": "[parameters('Input_CloudMES_iotHubNamespace')]",
+                  "consumerGroupName": "[parameters('Input_CloudMES_consumerGroupName')]",
+                  "endpoint": "[parameters('Input_CloudMES_endpoint')]",
+                  "sharedAccessPolicyName": "[parameters('Input_CloudMES_sharedAccessPolicyName')]",
+                  "sharedAccessPolicyKey": "[parameters('Input_CloudMES_sharedAccessPolicyKey')]"
                 }
               },
               "compression": {
@@ -202,29 +199,18 @@
         ],
         "outputs": [
           {
-            "name": "Output",
+            "name": "TableStorage1",
             "properties": {
-              "serialization": {
-                "type": "Json",
-                "properties": {
-                  "encoding": "UTF8",
-                  "format": "LineSeparated"
-                }
-              },
               "datasource": {
-                "type": "Microsoft.Storage/Blob",
+                "type": "Microsoft.Storage/Table",
                 "properties": {
-                  "storageAccounts": [
-                    {
-                      "accountName": "[parameters('Output_Output_Storage1_accountName')]",
-                      "accountKey": "[parameters('Output_Output_Storage1_accountKey')]"
-                    }
-                  ],
-                  "container": "[parameters('Output_Output_container')]",
-                  "pathPattern": "[parameters('Output_Output_pathPattern')]",
-                  "dateFormat": "[parameters('Output_Output_dateFormat')]",
-                  "timeFormat": "[parameters('Output_Output_timeFormat')]",
-                  "authenticationMode": "[parameters('Output_Output_authenticationMode')]"
+                  "accountName": "[parameters('Output_TableStorage1_accountName')]",
+                  "accountKey": "[parameters('Output_TableStorage1_accountKey')]",
+                  "table": "[parameters('Output_TableStorage1_table')]",
+                  "partitionKey": "[parameters('Output_TableStorage1_partitionKey')]",
+                  "rowKey": "[parameters('Output_TableStorage1_rowKey')]",
+                  "columnsToRemove": null,
+                  "batchSize": "[parameters('Output_TableStorage1_batchSize')]"
                 }
               }
             }

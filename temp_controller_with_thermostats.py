@@ -260,7 +260,8 @@ async def provision_device(provisioning_host, id_scope, registration_id, symmetr
 
 
 async def main():
-    switch = os.getenv("IOTHUB_DEVICE_SECURITY_TYPE")
+    # switch = os.getenv("IOTHUB_DEVICE_SECURITY_TYPE") # 获取环境变量, 切换环境
+    switch = "connectionString"
     if switch == "DPS":
         provisioning_host = (
             os.getenv("IOTHUB_DEVICE_DPS_ENDPOINT")
@@ -290,8 +291,9 @@ async def main():
                 "Could not provision device. Aborting Plug and Play device connection."
             )
 
-    elif switch == "connectionString": # this will be used
-        conn_str = os.getenv("IOTHUB_DEVICE_CONNECTION_STRING")
+    elif switch == "connectionString": # 看这个
+        # conn_str = os.getenv("IOTHUB_DEVICE_CONNECTION_STRING")
+        conn_str = "HostName=CloudMES.azure-devices.net;DeviceId=BeagleBoneBlack;SharedAccessKey=QaV8v3YkB8girsnc1dgzE21BPRhG0SP5rnRgloXl6p4="
         print("Connecting using Connection String " + conn_str)
         device_client = IoTHubDeviceClient.create_from_connection_string(
             conn_str, product_info=model_id
