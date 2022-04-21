@@ -65,6 +65,7 @@ print(server.get_endpoints())
 print("")
 print(server.get_namespace_array())
 print("")
+
 while True:
     print("########SAMPLE##########")
     for obj in global_object.get_children():

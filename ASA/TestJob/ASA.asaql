@@ -1,4 +1,4 @@
 SELECT *
-INTO OutputTable
-FROM Input
+INTO TableStorage1
+FROM CloudMES
 WHERE Temperature > 27
