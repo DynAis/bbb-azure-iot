@@ -2,7 +2,6 @@ import logging
 import asyncio
 
 from opcua import Client
-from opcua import ua
 
 
 

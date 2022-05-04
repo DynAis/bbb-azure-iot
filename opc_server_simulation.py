@@ -1,5 +1,4 @@
 from time import sleep
-import random
 from opcua import Server
 
 
@@ -54,8 +53,8 @@ global_opt_counter = global_object.add_variable('ns=3;s="Sort"."zaehl"."total_za
 global_opt_counter.set_writable()
 
 hight_mes = global_object.add_variable('ns=3;s="Sort"."Hoehe_messen"', "Hoehe_messung" ,0)
-opt_counter.set_writable()
-
+# opt_counter.set_writable()#
+# hight_mes.set_writable()
 
 Alarm = global_object.add_variable('ns=3;s="Sort"."Stoerung"', "Alarm" ,False)
 Alarm.set_writable()
@@ -65,12 +64,14 @@ print(server.get_endpoints())
 print("")
 print(server.get_namespace_array())
 print("")
+print("------------Server Started--------------")
 
 while True:
     print("########SAMPLE##########")
     for obj in global_object.get_children():
         print(str(obj.get_browse_name())[16:len(str(obj.get_browse_name()))-1])
         print(obj.get_value())
-        print("   ") 
-    print("   ")    
+        print("   ")
+    print("   ")
     sleep(5)
+    
