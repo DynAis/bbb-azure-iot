@@ -5,7 +5,7 @@ import opc_2_bbb_bridge as o2b
 # We use the connect string now direcktly on scripy, but it's not secure, we will change it wenn we finished everything.
 # conn_str = os.getenv("IOTHUB_DEVICE_CONNECTION_STRING")
 azure_conn_str = "HostName=CloudMES.azure-devices.net;DeviceId=BeagleBoneBlack;SharedAccessKey=QaV8v3YkB8girsnc1dgzE21BPRhG0SP5rnRgloXl6p4="
-opc_server_url = "opc.tcp://192.168.123.238:12345"
+opc_server_url = "opc.tcp://10.136.4.101:4840"
 
 async def main():
     # Connect to Azure IoT Hub and OPC UA Server

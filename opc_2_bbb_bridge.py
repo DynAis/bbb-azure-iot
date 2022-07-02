@@ -14,7 +14,7 @@ async def opc_connect(server_url: str) -> Client:
         print('connect established\n')
         # client.load_type_definitions()  # load definition of server specific structures/extension objects
     except:
-        print("error occurred")
+        print("error occurred\n")
     finally:
         # client.disconnect()
         # print('server disconnected')
@@ -24,8 +24,9 @@ async def opc_connect(server_url: str) -> Client:
 
 # get all the needed nodes and return as a dict 
 async def opc_get_all_node_value(client: Client) -> dict:
-    objects = client.get_objects_node() 
-    global_object = objects.get_children()[-1]
+    # objects = client.get_objects_node() 
+    # global_object = objects.get_children()[-1]
+    global_object = client.get_node('ns=3,s=Outputs')
     
     dic = {}
     for obj in global_object.get_children(): # traverse all the needed nodes
@@ -43,7 +44,7 @@ async def opc_get_all_node_value(client: Client) -> dict:
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.WARN)
-    server_url = "opc.tcp://localhost:12345"
+    server_url = "opc.tcp://10.136.4.101:4840"
     c=asyncio.run(opc_connect(server_url))
 
     print(asyncio.run(opc_get_all_node_value(c)))
