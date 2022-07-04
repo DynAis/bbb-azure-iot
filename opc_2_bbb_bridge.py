@@ -40,7 +40,10 @@ async def opc_get_all_node_value(client: Client) -> dict:
 
     return dic 
     
-
+# disconnect the opcua server
+async def opc_disconnect(client: Client):
+    assert client is not None, "opcua client is None"
+    await client.disconnect()
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.WARN)
