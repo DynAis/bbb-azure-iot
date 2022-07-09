@@ -39,7 +39,11 @@ async def opc_get_all_node_value(client: Client) -> dict:
         dic[name] = value 
 
     return dic 
-    
+   
+# disconnect the opcua client
+async def opc_disconnect(client: Client):
+    assert client is not None, "opcua client is None"
+    await client.disconnect()
 
 
 if __name__ == "__main__":
