@@ -13,18 +13,23 @@ async def query_entities(query_filter):
     async with table_client:
         try:
             queried_entities = table_client.query_entities(query_filter)
-
             # parameters = {u"name": u"marker"}
             # name_filter = u"Name eq @name"
             # queried_entities = table_client.query_entities(
             #   query_filter=name_filter, select=[u"Brand", u"Color"], parameters=parameters
             # )
             async for entity in queried_entities:
-                async for key in entity.keys():
-                    print("Key: {}, Value: {}".format(key, entity[key]))
-                            # print(entity_chosen)
+                
+                while (await queried_entities.__anext__()):
+                    pass
+                
+            # print("Key: {}, Value: {}".format(key, entity[key]))
+            # print(queried_entities)
         except HttpResponseError as e:
             pass
+        except :
+            print(entity)
+            return entity
 
 async def main():
     try:

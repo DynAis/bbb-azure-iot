@@ -57,6 +57,21 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.WARN)
     server_url = "opc.tcp://localhost:12345"
     d = {'bertieb_Hand': True,'Hoehe_messung': 555} # !!!
+item_list = ['bertieb_Hand', 
+                'bertieb_Auto', 
+                'start', 
+                'stop', 
+                'Quit',
+                'inductive_counter', 
+                'total_inductive_counter',
+                'capactive_counter',
+                'total_capactive_counter',
+                'zu_hoch',
+                'total_zu_hoch' ,
+                'optisch_counter',
+                'total_optisch_counter',
+                'Hoehe_messung',
+                'Alarm']
     dit = {'bertieb_Hand': True, 
         'bertieb_Auto': False, 
         'start': True, 
