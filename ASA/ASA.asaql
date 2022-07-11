@@ -1,4 +1,3 @@
 SELECT *
 INTO TableStorage1
 FROM CloudMES
-WHERE temperature >0
