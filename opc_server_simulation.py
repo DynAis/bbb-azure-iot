@@ -5,8 +5,8 @@ from opcua import Server
 
 ##Server config
 server = Server()
-# server.set_endpoint("opc.tcp://127.0.0.1:4048")
-server.set_endpoint("opc.tcp://localhost:12345")
+server.set_endpoint("opc.tcp://127.0.0.1:4048")
+# server.set_endpoint("opc.tcp://localhost:12345")
 server.register_namespace("server")
 
 ##Register 3rd namespace as S71500

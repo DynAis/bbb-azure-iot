@@ -38,7 +38,8 @@ async def azure_send_msg(device_client: IoTHubDeviceClient, msg_dict: dict, comp
     await device_client.send_message(msg)
 
     # print massage
-    print(msg_dict)
+    # print(msg_dict)
+    print("msg to azure:"+ str(msg_dict))
 
 
 

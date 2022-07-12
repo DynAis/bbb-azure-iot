@@ -1,2 +1,4 @@
 opcua==0.98.13
 azure-iot-device
+azure-data-tables
+aiohttp

@@ -2,7 +2,7 @@
 
 It's a Teamproject in Ostfalia SS2022
 
-Aim to use a BeagleBone-Black as a IoT device connector between localmachine and Azure cloud server.
+Aim to use a BeagleBone-Black as a IoT device connector between local machine and Azure cloud server.
 Temporary using simulated OPC-UA server as alternative to test out the workflow.
 
 # Usage:
@@ -12,4 +12,6 @@ Temporary using simulated OPC-UA server as alternative to test out the workflow.
 3. run `main.py`
 4. check out the message in Azure
 
+[update]:  
+change the values in Azure Table storage and check the changes in simulated OPC-UA server
 

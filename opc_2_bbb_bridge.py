@@ -24,9 +24,9 @@ async def opc_connect(server_url: str) -> Client:
 
 # get all the needed nodes and return as a dict 
 async def opc_get_all_node_value(client: Client) -> dict:
-    # objects = client.get_objects_node() 
-    # global_object = objects.get_children()[-1]
-    global_object = client.get_node('ns=3,s=Outputs')
+    objects = client.get_objects_node() 
+    global_object = objects.get_children()[-1]
+    # global_object = client.get_node('ns=3,s=Outputs')
     
     dic = {}
     for obj in global_object.get_children(): # traverse all the needed nodes

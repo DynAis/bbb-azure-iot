@@ -2,10 +2,6 @@ from azure.data.tables.aio import TableClient
 from azure.core.exceptions import HttpResponseError
 import asyncio
 
-# connection_string = "DefaultEndpointsProtocol=https;AccountName=cldmstblstrg1;AccountKey=5Ez6g49uym1gUA/YIZnJWtS/DGwO0IwcpFnvp/R/hHHtVkXq5hgozsk0M72wkbbYNIHty7QvZbwZ/aW9VBehHA==;EndpointSuffix=core.windows.net"
-# # service = TableServiceClient.from_connection_string(conn_str=connection_string)
-# table_name = "OutputTable1"
-# query_filter = "PartitionKey eq '1'"#主键
 
 item_list = ['bertieb_Hand', 'bertieb_Auto',  'start', 'stop', 'Quit','inductive_counter', 
             'total_inductive_counter','capactive_counter','total_capactive_counter',
@@ -47,7 +43,7 @@ async def line_processing(query_filter,connection_string, table_name)->dict:
                 client_dict[names] = dic[names]
             else:
                 client_dict[names] = dic[names].value   
-    print(client_dict)    # print the dict 
+    print("list from Storage Table:"+ str(client_dict))    # print the dict 
     return client_dict
 
 # async def get_last_line():
