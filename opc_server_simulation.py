@@ -5,7 +5,8 @@ from opcua import Server
 
 ##Server config
 server = Server()
-server.set_endpoint("opc.tcp://127.0.0.1:4048")
+# server.set_endpoint("opc.tcp://127.0.0.1:4048")
+server.set_endpoint("opc.tcp://localhost:12345")
 server.register_namespace("server")
 
 ##Register 3rd namespace as S71500
@@ -54,7 +55,7 @@ global_opt_counter.set_writable()
 
 hight_mes = global_object.add_variable('ns=3;s="Sort"."Hoehe_messen"', "Hoehe_messung" ,0)
 # opt_counter.set_writable()#
-# hight_mes.set_writable()
+hight_mes.set_writable()
 
 Alarm = global_object.add_variable('ns=3;s="Sort"."Stoerung"', "Alarm" ,False)
 Alarm.set_writable()
@@ -73,5 +74,5 @@ while True:
         print(obj.get_value())
         print("   ")
     print("   ")
-    sleep(5)
+    sleep(10)
     

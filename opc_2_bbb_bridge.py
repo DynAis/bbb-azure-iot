@@ -13,8 +13,8 @@ async def opc_connect(server_url: str) -> Client:
         client.connect()
         print('connect established\n')
         # client.load_type_definitions()  # load definition of server specific structures/extension objects
-    except:
-        print("error occurred\n")
+    except Exception as e:
+        print(e)
     finally:
         # client.disconnect()
         # print('server disconnected')
