@@ -25,8 +25,6 @@ Temporary using simulated OPC-UA server as alternative to test out the workflow.
 
 3. run `main.py`
 
-4. see the changes in Azure Table storage
-
 
 
 
